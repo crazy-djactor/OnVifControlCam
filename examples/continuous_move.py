@@ -87,7 +87,6 @@ def setup_move():
     ptz = mycam.create_ptz_service()
     print("setup_move ptz {} {}", ptz)
     # Get target profile
-    media.
     media_profile = media.GetProfiles()[0]
 
     # Get PTZ configuration options for getting continuous move range
