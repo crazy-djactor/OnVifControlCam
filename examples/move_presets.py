@@ -44,14 +44,15 @@ def setup_move():
             name = ""
         position = preset['PTZPosition']
 
-        print("preset {} => ({}, {})".format(name, position.PanTilt.x,
+        print("preset {} => ({}, {}, {})".format(name, position.PanTilt.x,
                                              position.PanTilt.y,
-                                             position.PanTilt.y))
+                                             position.Zoom.x))
     # GetStatus
     print("GetStatus")
     status = ptz.GetStatus({'ProfileToken': profileToken})
-    print('status {} {} {}'.format(status.Position.PanTilt.x, status.Position.PanTilt.y,
-                                      status.Position.Zoom.x))
+    print('status {} {} {}   ? => '.format(status.Position.PanTilt.x, status.Position.PanTilt.y,
+                                      status.Position.Zoom.x,
+                                   status.MoveStatus.PanTilt))
 
     # abMove = ptz.create_type('AbsoluteMove')
     # abMove.ProfileToken = profileToken
