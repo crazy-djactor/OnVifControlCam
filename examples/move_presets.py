@@ -33,7 +33,7 @@ def setup_move():
     profileToken = media_profile.token
 
     # Get presets
-    print "Get Presets..."
+    print("Get Presets...")
     gp = ptz.create_type('GetPresets')
     gp.ProfileToken = profileToken
     presets = ptz.GetPresets(gp)
@@ -47,7 +47,7 @@ def setup_move():
         print("preset {}".format(name))
 
     # GetStatus
-    print "GetStatus"
+    print("GetStatus")
     status = ptz.GetStatus({'ProfileToken': profileToken})
     print('status {} {} {} {}'.format(status.Position.PanTilt.x, status.Position.PanTilt.y,
                                       status.Velocity.PanTilt.x, status.Velocity.PanTilt.y))
