@@ -1,3 +1,4 @@
+import zeep
 import asyncio, sys
 from onvif import ONVIFCamera
 
@@ -14,6 +15,10 @@ YMIN = -1
 moverequest = None
 ptz = None
 active = False
+
+def zeep_pythonvalue(self, xmlvalue):
+    return xmlvalue
+zeep.xsd.simple.AnySimpleType.pythonvalue = zeep_pythonvalue
 
 def do_move(ptz, request):
     # Start continuous move
@@ -76,12 +81,13 @@ def setup_move():
     mycam = ONVIFCamera(IP, PORT, USER, PASS)
     # Create media service object
     media = mycam.create_media_service()
-    
+    print("setup_move {} {}", mycam, media)
     # Create ptz service object
     global ptz
     ptz = mycam.create_ptz_service()
-
+    print("setup_move ptz {} {}", ptz)
     # Get target profile
+    media.
     media_profile = media.GetProfiles()[0]
 
     # Get PTZ configuration options for getting continuous move range
