@@ -93,10 +93,10 @@ def url_to_image(url):
     # resp = urlopen(url)
     import requests
     from requests.auth import HTTPBasicAuth
-    resp = requests.get(url, auth=HTTPBasicAuth(USER, PASS))
+    resp = requests.get(url, auth=HTTPBasicAuth(USER, PASS), stream=True).raw
 
-    # image = np.asarray(bytearray(resp.read()), dtype="uint8")
-    image = np.asarray(bytearray(resp.data), dtype="uint8")
+    image = np.asarray(bytearray(resp.read()), dtype="uint8")
+    # image = np.asarray(bytearray(resp.data), dtype="uint8")
     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
     return image
 
