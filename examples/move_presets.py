@@ -128,7 +128,7 @@ class CameraController:
         # n_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         # cv2.imwrite('./image1.jpg', n_image)
 
-        image = url_to_image(snapshot)
+        image = url_to_image(snapshot.Uri)
         cv2.imwrite('./image2.jpg', image)
 
         return current_prest, self.status.MoveStatus.PanTilt, snapshot
