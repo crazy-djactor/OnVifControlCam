@@ -3,6 +3,7 @@ import asyncio, sys
 from onvif import ONVIFCamera
 import cv2
 import numpy as np
+import urllib
 from urllib.request import urlopen
 
 IP="192.168.1.108"   # Camera IP address
@@ -84,6 +85,11 @@ def setup_move():
     # YMIN = ptz_configuration_options.Spaces.ContinuousPanTiltVelocitySpace[0].YRange.Min
 
 def url_to_image(url):
+    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
+    password_mgr.add_password(None, url, USER, PASS)
+    handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
+    opener = urllib.request.build_opener(handler)
+    urllib.request.install_opener(opener)
     resp = urlopen(url)
     image = np.asarray(bytearray(resp.read()), dtype="uint8")
     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
@@ -127,7 +133,6 @@ class CameraController:
         # image = io.imread(snapshot)
         # n_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         # cv2.imwrite('./image1.jpg', n_image)
-
         image = url_to_image(snapshot.Uri)
         cv2.imwrite('./image2.jpg', image)
 
