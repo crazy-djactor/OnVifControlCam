@@ -85,13 +85,18 @@ def setup_move():
     # YMIN = ptz_configuration_options.Spaces.ContinuousPanTiltVelocitySpace[0].YRange.Min
 
 def url_to_image(url):
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, url, USER, PASS)
-    handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(handler)
-    urllib.request.install_opener(opener)
-    resp = urlopen(url)
-    image = np.asarray(bytearray(resp.read()), dtype="uint8")
+    # password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
+    # password_mgr.add_password(None, url, USER, PASS)
+    # handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
+    # opener = urllib.request.build_opener(handler)
+    # urllib.request.install_opener(opener)
+    # resp = urlopen(url)
+    import requests
+    from requests.auth import HTTPBasicAuth
+    resp = requests.get(url, auth=HTTPBasicAuth(USER, PASS))
+
+    # image = np.asarray(bytearray(resp.read()), dtype="uint8")
+    image = np.asarray(bytearray(resp.data), dtype="uint8")
     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
     return image
 
