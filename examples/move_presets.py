@@ -2,7 +2,6 @@ import zeep
 import asyncio, sys
 from onvif import ONVIFCamera
 import cv2
-from skimage import io
 import numpy as np
 import urllib
 
