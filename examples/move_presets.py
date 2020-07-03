@@ -3,7 +3,7 @@ import asyncio, sys
 from onvif import ONVIFCamera
 import cv2
 import numpy as np
-import urllib
+from urllib.request import urlopen
 
 IP="192.168.1.108"   # Camera IP address
 PORT=80           # Port
@@ -84,7 +84,7 @@ def setup_move():
     # YMIN = ptz_configuration_options.Spaces.ContinuousPanTiltVelocitySpace[0].YRange.Min
 
 def url_to_image(url):
-    resp = urllib.urlopen(url)
+    resp = urlopen(url)
     image = np.asarray(bytearray(resp.read()), dtype="uint8")
     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
     return image
