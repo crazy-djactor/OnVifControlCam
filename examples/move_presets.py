@@ -108,7 +108,7 @@ class CameraController:
     status = None
 
     def get_current_preset(self):
-        mycam = ONVIFCamera(IP, PORT, USER, PASS)
+        mycam = ONVIFCamera(IP, PORT, USER, PASS, '../wsdl/')
         # Create media service object
         media = mycam.create_media_service()
         print("setup_move {} {}", mycam, media)
@@ -176,8 +176,8 @@ class CameraController:
 
 
 if __name__ == '__main__':
-    url_to_image('http://192.168.1.108/onvifsnapshot/media_service/snapshot?channel=1&subtype=0')
+    # url_to_image('http://192.168.1.108/onvifsnapshot/media_service/snapshot?channel=1&subtype=0')
     # setup_move()
-    # camera = CameraController()
-    # camera.get_presets()
-    # camera.get_current_preset()
+    camera = CameraController()
+    camera.get_presets()
+    camera.get_current_preset()
