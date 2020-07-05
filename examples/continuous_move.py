@@ -2,7 +2,7 @@ import zeep
 import asyncio, sys
 from onvif import ONVIFCamera
 
-IP="192.168.1.108"   # Camera IP address
+IP="192.168.2.22"   # Camera IP address
 PORT=80           # Port
 USER="admin"         # Username
 PASS="C0nc3ll0M4r1n"        # Password

@@ -92,13 +92,15 @@ def url_to_image(url):
     # urllib.request.install_opener(opener)
     # resp = urlopen(url)
     import requests
-    from requests.auth import HTTPBasicAuth
-    resp = requests.get(url, auth=HTTPBasicAuth(USER, PASS), stream=True).raw
-
-    image = np.asarray(bytearray(resp.read()), dtype="uint8")
-    # image = np.asarray(bytearray(resp.data), dtype="uint8")
-    image = cv2.imdecode(image, cv2.IMREAD_COLOR)
-    return image
+    from requests.auth import HTTPDigestAuth
+    resp = requests.get(url, auth=HTTPDigestAuth(USER, PASS))
+    if resp.status_code == 200:
+        image = np.asarray(bytearray(resp.content), dtype="uint8")
+        image2 = cv2.imdecode(image, cv2.IMREAD_COLOR)
+        cv2.imshow('image', image2)
+        return image
+    else:
+        return None
 
 
 class CameraController:
@@ -174,7 +176,8 @@ class CameraController:
 
 
 if __name__ == '__main__':
+    url_to_image('http://192.168.1.108/onvifsnapshot/media_service/snapshot?channel=1&subtype=0')
     # setup_move()
-    camera = CameraController()
-    camera.get_presets()
-    camera.get_current_preset()
+    # camera = CameraController()
+    # camera.get_presets()
+    # camera.get_current_preset()
