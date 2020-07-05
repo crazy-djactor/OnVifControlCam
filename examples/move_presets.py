@@ -146,7 +146,7 @@ class CameraController:
         return current_prest, self.status.MoveStatus.PanTilt, snapshot
 
     def get_presets(self):
-        mycam = ONVIFCamera(IP, PORT, USER, PASS)
+        mycam = ONVIFCamera(IP, PORT, USER, PASS, '../wsdl/')
         # Create media service object
         media = mycam.create_media_service()
         print("setup_move {} {}", mycam, media)
