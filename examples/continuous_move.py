@@ -78,7 +78,7 @@ def move_downright(ptz, request):
     do_move(ptz, request)
 
 def setup_move():
-    mycam = ONVIFCamera(IP, PORT, USER, PASS)
+    mycam = ONVIFCamera(IP, PORT, USER, PASS, '../wsdl/')
     # Create media service object
     media = mycam.create_media_service()
     print("setup_move {} {}", mycam, media)
