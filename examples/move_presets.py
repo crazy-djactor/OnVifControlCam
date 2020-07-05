@@ -6,7 +6,7 @@ import numpy as np
 import urllib
 from urllib.request import urlopen
 
-IP="192.168.1.108"   # Camera IP address
+IP="192.168.2.22"   # Camera IP address
 PORT=80           # Port
 USER="admin"         # Username
 PASS="C0nc3ll0M4r1n"        # Password
